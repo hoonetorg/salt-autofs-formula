@@ -1,0 +1,23 @@
+autofs:
+  lookup:
+    maps:
+      direct1:
+        opts: "--timeout=0,-fstype=nfs,nfsvers=3,rw,soft,intr,rsize=262144,wsize=262144"
+        #direct map
+        mount: "/-"
+        entities:
+          /srv/export1:
+            source: nfsserver:/srv/export1
+            opts: noatime
+          /srv/export2:
+            source: nfsserver:/srv/export2
+      direct2:
+        opts: "--timeout=0,-fstype=nfs,nfsvers=3,rw,soft,intr,rsize=1048576,wsize=1048576"
+        #direct map
+        mount: "/-"
+        entities:
+          /srv/export3:
+            source: nfsserver2:/srv/export3
+            opts: noatime,nodiratime
+          /srv/export4:
+            source: nfsserver2:/srv/export4

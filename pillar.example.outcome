@@ -1,0 +1,24 @@
+# ls -al /etc/auto.master /etc/auto.master.d/direct* /etc/auto.direct*
+-rw-r--r--. 1 root root 83 Jun 11 11:30 /etc/auto.direct1
+-rw-r--r--. 1 root root 96 Jun 11 11:30 /etc/auto.direct2
+-rw-r--r--. 1 root root 24 Jun 10 22:52 /etc/auto.master
+-rw-r--r--. 1 root root 95 Jun 11 11:30 /etc/auto.master.d/direct1.autofs
+-rw-r--r--. 1 root root 97 Jun 11 11:30 /etc/auto.master.d/direct2.autofs
+# for i in /etc/auto.master /etc/auto.master.d/direct* /etc/auto.direct*;do echo $i:; cat $i;echo;done
+/etc/auto.master:
++dir:/etc/auto.master.d
+
+/etc/auto.master.d/direct1.autofs:
+/- /etc/auto.direct1  --timeout=0,-fstype=nfs,nfsvers=3,rw,soft,intr,rsize=262144,wsize=262144
+
+/etc/auto.master.d/direct2.autofs:
+/- /etc/auto.direct2  --timeout=0,-fstype=nfs,nfsvers=3,rw,soft,intr,rsize=1048576,wsize=1048576
+
+/etc/auto.direct1:
+/srv/export1 noatime  nfsserver:/srv/export1
+/srv/export2   nfsserver:/srv/export2
+
+/etc/auto.direct2:
+/srv/export3 noatime,nodiratime  nfsserver2:/srv/export3
+/srv/export4   nfsserver2:/srv/export4
+
