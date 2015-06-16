@@ -69,7 +69,7 @@ autofs__file_/etc/auto.{{autofsmap}}:
 autofs__file_/etc/auto.{{autofsmap}}_{{entity}}:
   file.replace:
     - name: /etc/auto.{{autofsmap}}
-    - pattern: ^[[:blank:]]*{{entity}}[[:blank:]]+.*
+    - pattern: ^\s*{{entity}}\s+.*$
     - repl: "{{entity}} {{entity_data.opts|default('')}}  {{entity_data.source}}" 
     - count: 1
     - append_if_not_found: True
