@@ -4,10 +4,9 @@
 autofs__pkg_autofs:
   pkg.installed:
     - name: autofs
-{% set slsrequires =salt['pillar.get']('autofs:slsrequires', False) %}
-{% if slsrequires is defined and slsrequires %}
+{% if autofs.slsrequires is defined and autofs.slsrequires %}
     - require:
-{% for slsrequire in slsrequires %}
+{% for slsrequire in autofs.slsrequires %}
       - {{slsrequire}}
 {% endfor %}
 {% endif %}
