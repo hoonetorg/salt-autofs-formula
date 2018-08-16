@@ -60,6 +60,7 @@ autofs__file_/etc/auto.master.d/{{autofsmap}}.autofs:
 autofs__file_/etc/auto.{{autofsmap}}:
   file.managed:
     - name: /etc/auto.{{autofsmap}}
+    - replace: False
     - user: root
     - group: root
     - mode: 0644
