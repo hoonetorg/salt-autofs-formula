@@ -69,11 +69,12 @@ autofs__file_/etc/auto.{{autofsmap}}:
 
 {%- set options = entity_data.get('options', '') %}
 {%- set destination = entity_data.get('destination', entity) %}
+{%- set destination_re = '\*' if destination == '*' else destination %}
 
 autofs__file_/etc/auto.{{autofsmap}}_{{entity}}:
   file.replace:
     - name: /etc/auto.{{autofsmap}}
-    - pattern: ^\s*{{destination}}\s+.*$
+    - pattern: ^\s*{{destination_re}}\s+.*$
     - repl: "{{destination}} {{options}}  {{entity_data.source}}"
     - count: 1
     - append_if_not_found: True
